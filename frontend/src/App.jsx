@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import CreatePage from './pages/CreatePage'
 import { ContextData } from './contexts/Context'
+import EditPage from './pages/EditPage'
 
 
 const App = () => {
@@ -11,13 +12,14 @@ const App = () => {
 
 
   return (
-    <div data-theme={theme} className='w-full h-screen bg-white text-zinc-900 font-[gilroy]'>
+    <div data-theme={theme} className='w-full pb-20 bg-white text-zinc-900 font-[gilroy]'>
       <div className='max-w-[1140px] mx-auto'>
         <Navbar />
 
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/create' element={<CreatePage />} />
+          <Route path='/edit/:id' element={<EditPage />} />
         </Routes>
       </div>
     </div>

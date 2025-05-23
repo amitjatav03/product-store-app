@@ -1,37 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Product from '../components/Product'
 import axios from 'axios';
+import { ProductContextData } from '../contexts/ProductContext';
+import Spinner from '../components/Spinner';
 
 const HomePage = () => {
-  const [products, setProducts] = useState([]);
-  
-  useEffect(() => {
+  const {products, setProducts, fetchProducts} = useContext(ProductContextData);
 
-    const fetchProducts = async () => {
-      try {
-        const api = 'http://localhost:5000/api/products'
-        const response = await axios.get(api);
-        setProducts(response.data.data);
-      } catch(error) {
-        console.log(error);
-      }
-    }
-
+  useEffect(() => {  
     fetchProducts();
   }, [])
-
+  
   console.log("product data: ", products)
 
+  if(products.length === 0) {
+    
+  }
+  
   return (
     
     <div className='w-full mx-auto flex gap-10 mt-10 flex-wrap justify-center'>
       {
+        (products.length === 0) ? ( <h1>No Products is Available</h1> ) :
+
         products.map((product, idx) => (
           <Product 
             key={idx}
+            id={product._id}
             name={product.name}
             price={product.price}
             image={product.image}
+            onDelete={fetchProducts}
           />
         ))
       }

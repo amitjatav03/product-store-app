@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className='w-full'>
         <div className='w-full flex items-center justify-between p-6'>
             <Link to={'/'}>
-                <h1 className='uppercase font-[gilroy-bold] text-3xl text-zinc-500'>
+                <h1 className='uppercase font-[gilroy-bold] text-3xl text-zinc-700 tracking-tight'>
                     Product Store
                 </h1>
             </Link>

@@ -18,6 +18,24 @@ export const getProducts = async (req, res) => {
     }
 }
 
+export const getProduct = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const products = await Product.find({_id: id});
+        res.status(200).json({
+            success: true,
+            data: products
+        });
+
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({
+            success: true,
+            message: "Server Error"
+        });
+    }
+}
+
 export const createProduct = async (req, res) => {
     const product = req.body; // user will send this data
 
